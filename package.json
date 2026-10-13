@@ -1,0 +1,11 @@
+{
+  "name": "raio-x-brasil",
+  "version": "1.0.0",
+  "description": "Mapa interativo do Brasil com dados oficiais do IBGE e do Banco Central, por estado.",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "serve": "python3 -m http.server 8000"
+  }
+}
