@@ -2,7 +2,7 @@
 
 Mapa interativo dos 27 estados com dados oficiais do **IBGE** e do **Banco Central**, buscados direto das APIs públicas toda vez que a página abre. Clique em um estado para ver a ficha dele, compare com outro lado a lado e compartilhe o link exato do que você está vendo.
 
-**Demo:** `https://SEU-USUARIO.github.io/raio-x-brasil/` (troque pelo seu usuário depois de publicar)
+**Demo:** [vincerus-dev.github.io/raio-x-brasil](https://vincerus-dev.github.io/raio-x-brasil/)
 
 ## O que dá para fazer
 
@@ -51,7 +51,7 @@ A integração roda a cada push no GitHub (`.github/workflows/test.yml`).
 
 1. Crie o repositório `raio-x-brasil` no GitHub e envie estes arquivos.
 2. Em **Settings, Pages**, escolha **Deploy from a branch**, branch `main`, pasta `/ (root)`.
-3. Em um ou dois minutos o site fica em `https://SEU-USUARIO.github.io/raio-x-brasil/`.
+3. Em um ou dois minutos o site fica em `https://vincerus-dev.github.io/raio-x-brasil/`.
 
 ## Estrutura
 
