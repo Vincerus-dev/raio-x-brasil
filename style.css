@@ -84,13 +84,22 @@ button, select { font: inherit; color: inherit; }
 
 .tick-v {
   display: block;
-  font-size: 1.55rem;
+  overflow-wrap: anywhere;
+  font-size: clamp(1.25rem, 2.2vw, 1.55rem);
   font-weight: 600;
   line-height: 1.15;
   font-variant-numeric: tabular-nums;
 }
 
-.tick-l { display: block; font-size: 0.85rem; color: var(--ink-2); }
+.tick-v.na {
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-2);
+  padding: 6px 0;
+}
+
+.tick-l { display: block; font-size: 0.85rem; color: var(--ink-2); overflow-wrap: anywhere; }
 .tick-r { display: block; font-size: 0.78rem; color: var(--ink-2); opacity: 0.85; }
 
 @media (min-width: 900px) {

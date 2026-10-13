@@ -17,8 +17,16 @@
       return 'https://servicodados.ibge.gov.br/api/v3/agregados/' + tabela + '/periodos/' + periodo +
         '/variaveis/' + variavel + '?localidades=N3[all]';
     },
-    sgs: function (serie, n) {
-      return 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.' + serie + '/dados/ultimos/' + n + '?formato=json';
+    // Janela de datas terminando hoje. Algumas séries (como a meta da Selic) trazem datas futuras,
+    // então "os últimos N pontos" poderia vir só com datas que ainda não aconteceram.
+    sgs: function (serie, days) {
+      const end = new Date();
+      const start = new Date(end.getTime() - days * 864e5);
+      const br = function (d) {
+        return String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0') + '/' + d.getFullYear();
+      };
+      return 'https://api.bcb.gov.br/dados/serie/bcdata.sgs.' + serie + '/dados?formato=json&dataInicial=' + br(start) +
+        '&dataFinal=' + br(end);
     }
   };
 
@@ -83,7 +91,7 @@
   function loadTicker() {
     renderTickerSkeleton();
     MACRO.forEach(function (m, i) {
-      getJSON(API.sgs(m.serie, 12))
+      getJSON(API.sgs(m.serie, m.monthly ? 400 : 45))
         .then(function (json) { return RX.parseSGS(json); })
         .then(function (row) {
           $('#tick' + i).innerHTML =
@@ -93,7 +101,7 @@
         })
         .catch(function () {
           $('#tick' + i).innerHTML =
-            '<span class="tick-v">indisponível</span><span class="tick-l">' + m.label + '</span>';
+            '<span class="tick-v na">sem dado agora</span><span class="tick-l">' + m.label + '</span>';
         });
     });
   }
